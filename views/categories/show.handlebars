@@ -1,0 +1,28 @@
+<nav class="breadcrumbs">
+  <a href="/">Home</a>
+  {{category.name}}
+</nav>
+
+<h1>{{category.name}}</h1>
+
+
+{{#each category.subcategories}}
+<h3><a href="/categories/{{../category.slug}}/sub/{{this.slug}}">{{this.name}}</a></h3>
+<ul class="car-list">
+  {{#each ../cars}}
+  {{#isEqual this.subcategory ../_id}}
+  <li>
+    <a href="/categories/{{../../category.slug}}/{{this.slug}}">
+      {{name}} ({{ color }}) - {{price}}$ 
+    </a>
+    <br>
+    {{#if image}}
+    <img src="{{image}}" alt="{{name}}" style="max-width: 150px;"><br>
+    {{/if}}
+  </li>
+  {{/isEqual}}
+  {{/each}}
+</ul>
+{{/each}}
+
+<a href="/" class="btn btn-home">Back to main page</a>
