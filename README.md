@@ -1,5 +1,11 @@
 # car-catalog
 
+### Auth info
+```
+ login: admin
+ password: password
+```
+
 ## Start local
 ```bash
   npm i
@@ -25,3 +31,4 @@
   node ./scripts/importData.js ./data/import.json
 ```
 ### Open [localhost](http://localhost/)
+
