@@ -7,6 +7,12 @@ const __dirname = path.resolve();
 
 export const imageUploadHandler = (imagePath) => async (req, res, next) => {
   try {
+
+      const uploadDir = path.join(__dirname, `public/uploads/${imagePath}`);
+      if (!fs.existsSync(uploadDir)) {
+        fs.mkdirSync(uploadDir, { recursive: true })
+      } 
+
     const form = formidable({
       multiples: false,
       uploadDir: path.join(__dirname, `public/uploads/${imagePath}`),

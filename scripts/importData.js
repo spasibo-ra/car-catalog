@@ -78,7 +78,6 @@ const importData = async (filePath) => {
     
     const dataPath = path.resolve(filePath);
     const data = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
-    console.dir({ data, dataPath });
 
     if (data.categories) {
       console.log('Importing categories and subcategories...');
