@@ -1,0 +1,10 @@
+{
+  "require": ["dotenv/config"],
+  "spec": "test/**/*.test.js",
+  "recursive": true,
+  "timeout": 5000,
+  "exit": true,
+  "reporter": "spec",
+  "ui": "bdd",
+  "env": "dotenv_config_path=.env.test"
+}

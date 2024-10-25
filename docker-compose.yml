@@ -8,12 +8,8 @@ services:
     restart: always
     ports:
       - "3000:3000"
-    environment:
-      - NODE_ENV=production
-      - MONGODB_URI=mongodb://mongo:27017/car-catalog
-      - SECRET_KEY=PUvp48LrTzp5JTpOKuREp4vqrY5KorlV
-      - ADMIN_LOGIN=admin
-      - ADMIN_PASSWORD=UN7Cz+Ftkzq6KSQcbF4O9g==:RsBXsyvZaSGofmcUAFZ/auIxSeQdEwRXcTg6gvUlPJNafyLrB+Q2tonnoYkcvs4UxtjeQEpDPU4eFQGljxVdJw==
+    env_file:
+      - .env.production
     depends_on:
       - mongo
     networks:
