@@ -6,7 +6,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "seed": "node ./scripts/importData.js "
+    "seed": "node ./scripts/importData.js ./data/import.json"
   },
   "author": "el_spasibo",
   "license": "MIT",

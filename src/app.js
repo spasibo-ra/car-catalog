@@ -45,7 +45,7 @@ class App {
   }
 
   #setEnviroment() {
-    dotenv.config({ path: ['.env.development', '.env.production'] });
+    dotenv.config({ path: '.env' });
   }
 
 
