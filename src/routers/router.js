@@ -25,10 +25,10 @@ class MainRouter {
   get healthCheckHandler() {
     return (req, res, next) => {
       res.locals.result = {
-        status: 'ok'
+        status: 'ok',
       };
       next();
-    }
+    };
   }
 }
 

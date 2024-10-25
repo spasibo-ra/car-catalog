@@ -8,4 +8,4 @@ export function responseHandler(req, res, next) {
     return res.end();
   }
   return next();
-};
+}

@@ -5,7 +5,10 @@ async function login(req, res) {
   const { login, password } = req.body;
   const ADMIN_LOGIN = process.env.ADMIN_LOGIN;
   const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
-  if (login === ADMIN_LOGIN && await verifyPassword(password, ADMIN_PASSWORD)) {
+  if (
+    login === ADMIN_LOGIN &&
+    (await verifyPassword(password, ADMIN_PASSWORD))
+  ) {
     req.session.isAuthenticated = true;
     return res.redirect('/cars/list');
   }

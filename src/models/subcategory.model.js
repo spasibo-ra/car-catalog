@@ -4,7 +4,11 @@ import slugify from 'slugify';
 const subcategorySchema = new mongoose.Schema({
   name: { type: String, required: true },
   slug: { type: String, unique: true },
-  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true }
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
+    required: true,
+  },
 });
 
 subcategorySchema.pre('save', function (next) {

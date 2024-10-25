@@ -3,6 +3,5 @@ export function errorHandler(error, req, res, next) {
   const message = error.message || 'Something went wrong';
   console.error(error);
 
-  res.status(status)
-    .render('error', { title: 'Error', message });
-};
+  res.status(status).render('error', { title: 'Error', message });
+}
