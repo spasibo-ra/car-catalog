@@ -1,0 +1,82 @@
+<h1>Edit Car: {{car.name}}</h1>
+
+<form action="/cars/{{car.slug}}/edit" method="POST" enctype="multipart/form-data">
+  <div>
+    <label for="name">Car Name</label>
+    <input type="text" name="name" id="name" value="{{car.name}}" required>
+  </div>
+
+  <div>
+    <label for="color">Car Color</label>
+    <input type="text" name="color" id="color" value="{{car.color}}" required>
+  </div>
+
+  <div>
+    <label for="price">Car Price</label>
+    <input type="number" name="price" id="price" value="{{car.price}}" required>
+  </div>
+
+  <div>
+    <label for="description">Description</label>
+    <textarea name="description" id="description" required>{{car.description}}</textarea>
+  </div>
+
+  <div>
+    <label for="category">Category</label>
+    <select name="category" id="category" required>
+      {{#each categories}}
+      <option value="{{this._id}}" {{#isEqual this._id ../car.category._id}}selected{{/isEqual}}>{{this.name}}
+      </option>
+      {{/each}}
+    </select>
+  </div>
+
+  <div>
+    <label for="subcategory">Subcategory</label>
+    <select name="subcategory" id="subcategory" required>
+      {{#each subcategories}}
+      <option value="{{this._id}}" {{#isEqual this._id ../car.subcategory._id}}selected{{/isEqual}}>{{this.name}}
+      </option>
+      {{/each}}
+    </select>
+  </div>
+
+  <div>
+    <label for="image">Car Image</label>
+    <input type="file" name="image" id="image" value="">
+    {{#if car.image }}
+      <p>Current image: <img src="{{car.image}}" alt="{{car.name}}" width="150px"></p>
+    {{/if}}
+  </div>
+
+  <div id="categoriesData" style="display: none;">
+    {{{json categories}}}
+  </div>
+
+  <button type="submit">Update Car</button>
+</form>
+<p><br /></p>
+<a href="/cars/list" class="btn btn-home">Back</a>
+
+<script>
+  document.getElementById('category').addEventListener('change', function () {
+    const selectedCategoryId = this.value;
+    const subcategorySelect = document.getElementById('subcategory');
+    const categoriesData = JSON.parse(document.getElementById('categoriesData').textContent);
+
+    subcategorySelect.innerHTML = '';
+    const selectedCategory = categoriesData.find(cat => cat._id === selectedCategoryId);
+
+    if (selectedCategory && selectedCategory.subcategories.length > 0) {
+      selectedCategory.subcategories.forEach(sub => {
+        const option = document.createElement('option');
+        option.value = sub._id;
+        option.textContent = sub.name;
+        if (sub._id === '{{car.subcategory._id}}') {
+          option.selected = true;
+        }
+        subcategorySelect.appendChild(option);
+      });
+    }
+  });
+</script>

@@ -1,0 +1,68 @@
+{
+  "categories": [
+    {
+      "name": "SUV",
+      "slug": "suv",
+      "subcategories": [
+        {
+          "name": "Compact SUV",
+          "slug": "compact-suv"
+        },
+        {
+          "name": "Full-size SUV",
+          "slug": "full-size-suv"
+        },
+        {
+          "name": "Mid-size SUV",
+          "slug": "mid-size-suv"
+        }
+      ]
+    },
+    {
+      "name": "Sedan",
+      "slug": "sedan",
+      "subcategories": [
+        {
+          "name": "Compact Sedan",
+          "slug": "compact-sedan"
+        },
+        {
+          "name": "Luxury Sedan",
+          "slug": "luxury-sedan"
+        }
+      ]
+    },
+    {
+      "name": "Truck",
+      "slug": "truck",
+      "subcategories": [
+        {
+          "name": "Pickup",
+          "slug": "pickup"
+        },
+        {
+          "name": "Heavy-Duty",
+          "slug": "heavy-duty"
+        }
+      ]
+    }
+  ],
+  "cars": [
+    {
+      "name": "Toyota Highlander",
+      "color": "Silver",
+      "price": 35000,
+      "description": "A reliable midsize SUV",
+      "category": "suv",
+      "subcategory": "full-size-suv"
+    },
+    {
+      "name": "Honda Civic",
+      "color": "Blue",
+      "price": 22000,
+      "description": "A compact sedan",
+      "category": "sedan",
+      "subcategory": "compact-sedan"
+    }
+  ]
+}

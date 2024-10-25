@@ -1,0 +1,28 @@
+<h1>Car Catalog</h1>
+
+{{#each categories}}
+<h2 class="category-title">
+  <a href="/categories/{{this.slug}}">{{this.name}}</a>
+</h2>
+
+{{#each this.subcategories}}
+<h3><a href="/categories/{{../slug}}/sub/{{this.slug}}">{{this.name}}</a></h3>
+<ul class="car-list">
+  {{#each ../../cars}}
+  {{#isEqual this.subcategory ../_id}}
+  <li>
+    <a href="/categories/{{../../slug}}/{{this.slug}}">
+      {{name}} ({{ color }}) - {{price}}$ 
+    </a>
+    <br>
+    {{#if image}}
+    <img src="{{image}}" alt="{{name}}" style="max-width: 150px;"><br>
+    {{/if}}
+  </li>
+  {{/isEqual}}
+  {{/each}}
+</ul>
+{{/each}}
+<hr>
+
+{{/each}}

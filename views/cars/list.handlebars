@@ -1,0 +1,31 @@
+<h1>Car List</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Color</th>
+      <th>Category</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each cars}}
+      <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.description}}</td>
+        <td>${{this.price}}</td>
+        <td>{{this.color}}</td>
+        <td>{{this.category.name}}</td>
+        <td>
+          <a href="/cars/{{this.slug}}/edit" class="btn btn-edit">Edit</a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<style>
+
+</style>

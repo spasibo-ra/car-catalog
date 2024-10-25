@@ -1,0 +1,23 @@
+<nav class="breadcrumbs">
+  <a href="/">Home</a>
+  <a href="/categories/{{category.slug}}">{{category.name}}</a>
+  {{subcategory.name}}
+</nav>
+
+<h1>{{category.name}} - {{subcategory.name}}</h1>
+
+<ul class="car-list">
+  {{#each cars}}
+  <li>
+    <a href="/categories/{{../category.slug}}/sub/{{../subcategory.slug}}/{{this.slug}}">
+      {{name}} ({{ color }}) - {{price}}$ 
+    </a>
+    <br>
+    {{#if image}}
+    <img src="{{image}}" alt="{{name}}" style="max-width: 150px;"><br>
+    {{/if}}
+  </li>
+  {{/each}}
+</ul>
+
+<a href="/categories/{{category.slug}}" class="btn btn-home">Back to {{category.name}}</a>
