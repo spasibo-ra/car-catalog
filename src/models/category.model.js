@@ -4,13 +4,17 @@ import slugify from 'slugify';
 const subcategorySchema = new mongoose.Schema({
   name: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
-  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true }
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
+    required: true,
+  },
 });
 
 const categorySchema = new mongoose.Schema({
   name: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
-  subcategories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Subcategory' }]
+  subcategories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Subcategory' }],
 });
 
 categorySchema.pre('save', function (next) {

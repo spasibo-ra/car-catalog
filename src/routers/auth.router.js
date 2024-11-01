@@ -1,29 +1,32 @@
 import { Router } from 'express';
-import { loginHandler, loginViewHandler, logoutHandler } from '../controllers/auth.controller.js';
+import {
+  loginHandler,
+  loginViewHandler,
+  logoutHandler,
+} from '../controllers/auth.controller.js';
 
 class AuthRouter {
-  #path = '/auth'
   constructor() {
     this.router = Router();
     this.#init();
   }
 
   #init() {
-    this.router.get(`${this.#path}/login`, this.loginView);
-    this.router.get(`${this.#path}/logout`, this.logout);
-    this.router.post(`${this.#path}/login`, this.login);
+    this.router.get(`/login`, this.loginView);
+    this.router.get(`/logout`, this.logout);
+    this.router.post(`/login`, this.login);
   }
 
   get login() {
-    return [loginHandler]
+    return [loginHandler];
   }
 
   get loginView() {
-    return [loginViewHandler]
+    return [loginViewHandler];
   }
 
   get logout() {
-    return [logoutHandler]
+    return [logoutHandler];
   }
 }
 

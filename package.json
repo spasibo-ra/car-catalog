@@ -5,7 +5,11 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "format": "npx prettier --write ./src",
+    "start": "NODE_ENV=production node server.js",
+    "start:dev": "NODE_ENV=development nodemon server.js",
+    "start:test": "NODE_ENV=test node server.js",
+    "test": "NODE_ENV=test mocha",
     "seed": "node ./scripts/importData.js ./data/import.json"
   },
   "author": "el_spasibo",
@@ -23,5 +27,15 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.2",
     "slugify": "^1.6.6"
+  },
+  "devDependencies": {
+    "chai": "^5.1.2",
+    "mocha": "^10.7.3",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.3.3",
+    "supertest": "^7.0.0"
+  },
+  "mocha": {
+    "env": "dotenv_config_path=./.env.test"   
   }
 }
