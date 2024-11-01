@@ -2,10 +2,9 @@ import { Category } from '../models/category.model.js';
 import Car from '../models/car.model.js';
 import wrap from '../utils/wrap.js';
 
-async function home(req, res) {
+async function categoryList(req, res) {
   const categories = await Category.find().populate('subcategories').lean();
-  const cars = await Car.find().lean();
-  res.render('home', { title: 'Car Catalog', categories, cars });
+  res.render('categories/list', { title: 'Category List', categories });
 }
 
 async function getCarByCategory(req, res) {
@@ -68,12 +67,10 @@ async function getCategoryBySlug(req, res) {
     .populate('subcategories')
     .lean();
   if (!category) {
-    return res
-      .status(404)
-      .render('error', {
-        title: 'Category Not Found',
-        message: 'Category not found.',
-      });
+    return res.status(404).render('error', {
+      title: 'Category Not Found',
+      message: 'Category not found.',
+    });
   }
   const cars = await Car.find({ category: category._id }).lean();
   res.render('categories/show', { title: category.name, category, cars });
@@ -86,23 +83,19 @@ async function getSubCategory(req, res) {
     .populate('subcategories')
     .lean();
   if (!category) {
-    return res
-      .status(404)
-      .render('error', {
-        title: 'Category Not Found',
-        message: 'Category not found.',
-      });
+    return res.status(404).render('error', {
+      title: 'Category Not Found',
+      message: 'Category not found.',
+    });
   }
   const subcategory = category.subcategories.find(
     (sub) => sub.slug === subCategorySlug
   );
   if (!subcategory) {
-    return res
-      .status(404)
-      .render('error', {
-        title: 'Subcategory Not Found',
-        message: 'Subcategory not found.',
-      });
+    return res.status(404).render('error', {
+      title: 'Subcategory Not Found',
+      message: 'Subcategory not found.',
+    });
   }
 
   const cars = await Car.find({
@@ -117,8 +110,36 @@ async function getSubCategory(req, res) {
   });
 }
 
-export const homeHandler = wrap(home);
+async function editCategoryView(req, res) {
+  const { categorySlug } = req.params;
+
+  const category = await Category.findOne({ slug: categorySlug })
+    .populate('subcategories')
+    .lean();
+  if (!category) 
+      return res.status(404).render('error', { title: 'Error', message: 'Category not found'});
+  res.render('categories/edit', { category });
+}
+async function editCategory(req, res) {
+  const { categorySlug } = req.params;
+  const { imageUrl, formData } = res.locals;
+  const { name, description } = formData
+  const category = await Category.findOne({ slug: categorySlug })
+  if (!category)
+    return res
+      .status(404)
+      .render('error', { title: 'Error', message: 'Category not found' });
+  category.name = name;
+  category.description = description;
+  if (imageUrl) category.image = imageUrl;
+  await category.save();
+  res.redirect(`/categories/${categorySlug}/edit`);
+}
+
 export const getCarByCategoryHandler = wrap(getCarByCategory);
 export const getCarBySubCategoryHandler = wrap(getCarBySubCategory);
 export const getSubCategoryHandler = wrap(getSubCategory);
 export const getCategoryBySlugHandler = wrap(getCategoryBySlug);
+export const categoryListHandler = wrap(categoryList);
+export const editCategoryViewHandler = wrap(editCategoryView);
+export const editCategoryHandler = wrap(editCategory);

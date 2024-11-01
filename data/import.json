@@ -2,46 +2,56 @@
   "categories": [
     {
       "name": "SUV",
+      "description": "SUV description",
       "slug": "suv",
       "subcategories": [
         {
           "name": "Compact SUV",
+          "description": "Compact SUV description",
           "slug": "compact-suv"
         },
         {
           "name": "Full-size SUV",
+          "description": "Full-size SUV description",
           "slug": "full-size-suv"
         },
         {
           "name": "Mid-size SUV",
+          "description": "Mid-size SUV description",
           "slug": "mid-size-suv"
         }
       ]
     },
     {
       "name": "Sedan",
+      "description": "Sedan description",
       "slug": "sedan",
       "subcategories": [
         {
           "name": "Compact Sedan",
+          "description": "Compact Sedan description",
           "slug": "compact-sedan"
         },
         {
           "name": "Luxury Sedan",
+          "description": "Luxury Sedan description",
           "slug": "luxury-sedan"
         }
       ]
     },
     {
       "name": "Truck",
+      "description": "Truck description",
       "slug": "truck",
       "subcategories": [
         {
           "name": "Pickup",
+          "description": "Pickup Truck description",
           "slug": "pickup"
         },
         {
           "name": "Heavy-Duty",
+          "description": "Heavy-Duty Truck description",
           "slug": "heavy-duty"
         }
       ]

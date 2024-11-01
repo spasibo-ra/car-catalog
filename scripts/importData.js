@@ -5,7 +5,8 @@ import { Category, Subcategory } from '../src/models/category.model.js';
 import Car from '../src/models/car.model.js';
 import dotenv from 'dotenv';
 
-dotenv.config();
+const envFile = `.env.${process.env.NODE_ENV || 'development'}`;
+dotenv.config({ path: envFile });
 
 const mongoUrl = process.env.MONGODB_URI;
 
@@ -15,20 +16,21 @@ mongoose.connect(mongoUrl)
 
 const importCategories = async (categories) => {
   for (const categoryData of categories) {
-    const { name, slug, subcategories } = categoryData;
+    const { name, slug, description, subcategories } = categoryData;
+
 
     let category = await Category.findOne({ slug });
     if (!category) {
-      category = new Category({ name, slug });
+      category = new Category({ name, description, slug });
       await category.save();
     }
 
     for (const subcategoryData of subcategories) {
-      const { name: subName, slug: subSlug } = subcategoryData;
+      const { name: subName, slug: subSlug, description: subDesc } = subcategoryData;
 
       let subcategory = await Subcategory.findOne({ slug: subSlug });
       if (!subcategory) {
-        subcategory = new Subcategory({ name: subName, slug: subSlug, category: category._id });
+        subcategory = new Subcategory({ name: subName, slug: subSlug, description: subDesc, category: category._id });
         await subcategory.save();
       }
       if (!category.subcategories.includes(subcategory._id)) {
