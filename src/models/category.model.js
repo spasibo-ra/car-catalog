@@ -4,6 +4,7 @@ import slugify from 'slugify';
 const subcategorySchema = new mongoose.Schema({
   name: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
+  description: { type: String },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',
@@ -14,6 +15,8 @@ const subcategorySchema = new mongoose.Schema({
 const categorySchema = new mongoose.Schema({
   name: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
+  description: { type: String },
+  image: { type: String },
   subcategories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Subcategory' }],
 });
 

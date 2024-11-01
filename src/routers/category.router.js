@@ -4,7 +4,12 @@ import {
   getCarBySubCategoryHandler,
   getCategoryBySlugHandler,
   getSubCategoryHandler,
+  categoryListHandler,
+  editCategoryViewHandler,
+  editCategoryHandler,
 } from '../controllers/category.controller.js';
+import { imageUploadHandler } from '../middleware/ImageUploadHandler.js';
+import { isAuthenticated } from '../middleware/auth.middleware.js';
 
 class CategoryRouter {
   constructor() {
@@ -14,6 +19,7 @@ class CategoryRouter {
 
   #init() {
     this.#categoryRoutes();
+    this.#editCategoryRoutes();
     this.#subCategoryRoutes();
   }
 
@@ -24,6 +30,11 @@ class CategoryRouter {
       `/:categorySlug/car/:carSlug`,
       this.getCarByCategory
     );
+  }
+
+  #editCategoryRoutes() {
+    this.router.get(`/:categorySlug/edit`, this.editCategoryView);
+    this.router.post(`/:categorySlug/edit`, this.editCategory);
   }
 
   #subCategoryRoutes() {
@@ -51,6 +62,18 @@ class CategoryRouter {
 
   get getSubCategory() {
     return [getSubCategoryHandler];
+  }
+
+  get catgoriesList() {
+    return [isAuthenticated, categoryListHandler];
+  }
+
+  get editCategoryView() {
+    return [isAuthenticated, editCategoryViewHandler];
+  }
+
+  get editCategory() {
+    return [imageUploadHandler('category'), editCategoryHandler]
   }
 }
 

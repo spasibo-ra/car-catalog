@@ -1,0 +1,52 @@
+<h1>Edit Category: {{category.name}}</h1>
+
+<form action="/categories/{{category.slug}}/edit" method="POST" enctype="multipart/form-data">
+  <div>
+    <label for="name">Category Name</label>
+    <input type="text" name="name" id="name" value="{{category.name}}" required>
+  </div>
+  <div>
+    <label for="description">Description</label>
+    <textarea name="description" id="description" required>{{category.description}}</textarea>
+  </div>
+
+
+  <div>
+    <label for="image">Category Image</label>
+    <input type="file" name="image" id="image" value="">
+    {{#if category.image }}
+      <p>Current image: <img src="{{category.image}}" alt="{{category.name}}" width="150px"></p>
+    {{/if}}
+  </div>
+
+
+  <div>
+    <label for="subcategory">Subcategories: </label>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each category.subcategories}}
+          <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.description}}</td>
+            <td>{{this.image}}</td>
+            <td>
+              <a href="/categories/{{../category.slug}}/sub/{{this.slug}}/edit" class="btn btn-edit">Edit</a>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  <button type="submit">Update Category</button>
+</form>
+<p><br /></p>
+<a href="/categories/list" class="btn btn-home">Back</a>

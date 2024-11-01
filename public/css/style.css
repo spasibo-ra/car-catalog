@@ -230,3 +230,11 @@ form {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
 }
+
+.category {
+  padding: 15px;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
