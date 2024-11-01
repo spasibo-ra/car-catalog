@@ -47,9 +47,12 @@ class App {
 
   #setHandlebars() {
     this.express.engine(
-      'handlebars',
+      '.hbs',
       engine({
         defaultLayout: 'main',
+        layoutsDir: './src/views/layouts',
+        partialsDir: './src/views/partials',
+        extname: '.hbs',
         helpers: {
           isEqual: function (arg1, arg2, options) {
             return arg1.toString() === arg2.toString()
@@ -60,8 +63,8 @@ class App {
         },
       })
     );
-    this.express.set('view engine', 'handlebars');
-    this.express.set('views', './views');
+    this.express.set('view engine', '.hbs');
+    this.express.set('views', './src/views');
   }
 
   #routes() {

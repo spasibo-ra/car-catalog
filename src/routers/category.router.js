@@ -1,7 +1,5 @@
 import { Router } from 'express';
-import carRouter from './car.router.js';
 import {
-  homeHandler,
   getCarByCategoryHandler,
   getCarBySubCategoryHandler,
   getCategoryBySlugHandler,
@@ -9,32 +7,34 @@ import {
 } from '../controllers/category.controller.js';
 
 class CategoryRouter {
-  #path = '/categories';
   constructor() {
     this.router = Router();
     this.#init();
   }
 
   #init() {
-    this.router.use('/', carRouter);
-    this.router.get('/', this.home);
-    this.router.get(`${this.#path}/:categorySlug`, this.getCategoryBySlug);
+    this.#categoryRoutes();
+    this.#subCategoryRoutes();
+  }
+
+  #categoryRoutes() {
+    this.router.get(`/list`, this.catgoriesList);
+    this.router.get(`/:categorySlug`, this.getCategoryBySlug);
     this.router.get(
-      `${this.#path}/:categorySlug/:carSlug`,
+      `/:categorySlug/car/:carSlug`,
       this.getCarByCategory
-    );
-    this.router.get(
-      `${this.#path}/:categorySlug/sub/:subCategorySlug`,
-      this.getSubCategory
-    );
-    this.router.get(
-      `${this.#path}/:categorySlug/sub/:subCategorySlug/:carSlug`,
-      this.getCarBySubCategory
     );
   }
 
-  get home() {
-    return [homeHandler];
+  #subCategoryRoutes() {
+    this.router.get(
+      `/:categorySlug/sub/:subCategorySlug`,
+      this.getSubCategory
+    );
+    this.router.get(
+      `/:categorySlug/sub/:subCategorySlug/car/:carSlug`,
+      this.getCarBySubCategory
+    );
   }
 
   get getCarByCategory() {

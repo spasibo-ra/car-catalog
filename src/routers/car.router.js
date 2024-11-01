@@ -10,18 +10,17 @@ import { imageUploadHandler } from '../middleware/ImageUploadHandler.js';
 import { isAuthenticated } from '../middleware/auth.middleware.js';
 
 class CarRouter {
-  #path = '/cars';
   constructor() {
     this.router = Router();
     this.#init();
   }
 
   #init() {
-    this.router.get(`${this.#path}/list`, this.listCars);
-    this.router.get(`${this.#path}/add`, this.addCarView);
-    this.router.get(`${this.#path}/:carSlug/edit`, this.editCarView);
-    this.router.post(`${this.#path}/add`, this.addCar);
-    this.router.post(`${this.#path}/:carSlug/edit`, this.editCar);
+    this.router.get(`/list`, this.listCars);
+    this.router.get(`/add`, this.addCarView);
+    this.router.get(`/:carSlug/edit`, this.editCarView);
+    this.router.post(`/add`, this.addCar);
+    this.router.post(`/:carSlug/edit`, this.editCar);
   }
 
   get addCarView() {
