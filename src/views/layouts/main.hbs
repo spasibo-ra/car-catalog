@@ -10,13 +10,13 @@
 
 <body>
   <header>
-    <h1>Admin Panel</h1>
     <nav>
       <ul>
       {{#if isAuthenticated}}
         <li><a href="/">Home</a></li>
         <li><a href="/cars/list">Cars List</a></li>
         <li><a href="/cars/add">Add Car</a></li>
+        <li><a href="/categories/list">Category List</a></li>
         <li><a href="/auth/logout">Logout</a></li>
     {{else}}
         <li><a href="/">Home</a></li>

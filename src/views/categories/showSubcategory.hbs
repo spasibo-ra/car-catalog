@@ -6,10 +6,11 @@
 
 <h1>{{category.name}} - {{subcategory.name}}</h1>
 
+
 <ul class="car-list">
   {{#each cars}}
   <li>
-    <a href="/categories/{{../category.slug}}/sub/{{../subcategory.slug}}/{{this.slug}}">
+    <a href="/categories/{{../category.slug}}/sub/{{../subcategory.slug}}/car/{{this.slug}}">
       {{name}} ({{ color }}) - {{price}}$ 
     </a>
     <br>

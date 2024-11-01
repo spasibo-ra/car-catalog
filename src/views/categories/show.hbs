@@ -4,6 +4,9 @@
 </nav>
 
 <h1>{{category.name}}</h1>
+    {{#if category.image}}
+    <img src="{{category.image}}" alt="{{category.name}}" style="max-width: 150px;"><br>
+    {{/if}}
 
 
 {{#each category.subcategories}}
@@ -12,7 +15,7 @@
   {{#each ../cars}}
   {{#isEqual this.subcategory ../_id}}
   <li>
-    <a href="/categories/{{../../category.slug}}/{{this.slug}}">
+    <a href="/categories/{{../../category.slug}}/car/{{this.slug}}">
       {{name}} ({{ color }}) - {{price}}$ 
     </a>
     <br>
